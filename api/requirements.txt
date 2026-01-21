@@ -6,4 +6,4 @@ python-jose[cryptography]==3.3.0
 requests==2.31.0
 pydantic-settings==2.1.0
 httpx==0.26.0
-pytest==8.0.0
+pytest==9.0.2
