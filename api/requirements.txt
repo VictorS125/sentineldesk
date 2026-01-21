@@ -1,7 +1,7 @@
 fastapi==0.109.0
 uvicorn[standard]==0.27.0
 sqlalchemy==2.0.25
-python-multipart==0.0.9
+python-multipart==0.0.21
 python-jose[cryptography]==3.5.0
 requests==2.32.5
 pydantic-settings==2.12.0
