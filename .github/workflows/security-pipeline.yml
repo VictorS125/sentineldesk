@@ -1,4 +1,5 @@
 name: Security & CI Pipeline
+# Triggering first run for status check indexing
 
 on:
   push:
@@ -8,17 +9,14 @@ on:
 
 jobs:
   security-test:
+    name: Security-Scan
     runs-on: ubuntu-latest
 
-    services:
-      # We don't need a full DB service because we use in-memory SQLite for tests
-      # But if we had Postgres, we would define it here.
-
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
 
     - name: Set up Python
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v6
       with:
         python-version: '3.11'
 
@@ -30,12 +28,12 @@ jobs:
 
     - name: Run Bandit (SAST)
       run: |
-        bandit -r api/app -v
+        python -m bandit -r api/app -v
 
     - name: Run Security Logic Tests (Pytest)
       env:
         tenant_id: "mock-tenant"
         api_audience: "api://mock-client"
+        PYTHONPATH: "api"
       run: |
-        cd api
-        pytest
+        python -m pytest api/tests
