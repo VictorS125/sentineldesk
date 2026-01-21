@@ -5,6 +5,7 @@ from .db import Base, engine
 from .routes_tickets import router as tickets_router
 from .routes_admin import router as admin_router
 from .rate_limit import RateLimitMiddleware
+from .config import settings
 
 
 Base.metadata.create_all(bind=engine)
@@ -20,17 +21,18 @@ async def add_security_headers(request: Request, call_next):
     response = await call_next(request)
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.headers["X-Frame-Options"] = "DENY"
-    # Basic CSP - in production this should be tighter
-    response.headers["Content-Security-Policy"] = "default-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self' http://localhost:3000"
+    # Dynamic CSP - allows connecting to frontend
+    response.headers["Content-Security-Policy"] = f"default-src 'self'; script-src 'self' 'unsafe-inline'; connect-src {settings.csp_connect_src}"
     response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains"
-    # Hide server header (Uvicorn adds it by default, hard to remove fully without proxy, but we can try overwriting)
     response.headers["Server"] = "SentinelDesk-Shield"
     return response
 
-# CORS configuration for Vite dev server
+# CORS configuration
+origins = settings.allowed_origins.split(",")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173", "http://localhost:3000"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
