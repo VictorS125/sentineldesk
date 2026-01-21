@@ -12,10 +12,6 @@ jobs:
     name: Security Scan & Tests
     runs-on: ubuntu-latest
 
-    services:
-      # We don't need a full DB service because we use in-memory SQLite for tests
-      # But if we had Postgres, we would define it here.
-
     steps:
     - uses: actions/checkout@v4
 
@@ -38,6 +34,6 @@ jobs:
       env:
         tenant_id: "mock-tenant"
         api_audience: "api://mock-client"
-        PYTHONPATH: ${{ github.workspace }}/api
+      working-directory: ./api
       run: |
-        python -m pytest api/tests
+        python -m pytest tests
