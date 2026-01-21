@@ -9,7 +9,7 @@ on:
 
 jobs:
   security-test:
-    name: Security Scan & Tests
+    name: Security-Scan
     runs-on: ubuntu-latest
 
     steps:
