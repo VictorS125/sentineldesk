@@ -32,12 +32,12 @@ jobs:
 
     - name: Run Bandit (SAST)
       run: |
-        bandit -r api/app -v
+        python -m bandit -r api/app -v
 
     - name: Run Security Logic Tests (Pytest)
       env:
         tenant_id: "mock-tenant"
         api_audience: "api://mock-client"
+        PYTHONPATH: ${{ github.workspace }}/api
       run: |
-        cd api
-        pytest
+        python -m pytest api/tests
