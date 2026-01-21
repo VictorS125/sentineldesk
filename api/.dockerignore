@@ -1,0 +1,7 @@
+__pycache__
+*.pyc
+.venv
+.env
+sentineldesk.db
+.git
+.gitignore

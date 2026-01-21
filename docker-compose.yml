@@ -1,0 +1,24 @@
+services:
+  api:
+    build: ./api
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./api/.env
+    volumes:
+      # Mount the db file so it persists (optional, remove to reset on restart)
+      - ./api/sentineldesk.db:/app/sentineldesk.db
+    restart: unless-stopped
+
+  web:
+    build: 
+      context: ./web
+      args:
+        # This points the frontend to the backend container's exposed port on localhost
+        # Because the browser (User) accesses it, localhost:8000 refers to the host machine's port
+        - VITE_API_BASE_URL=http://localhost:8000
+    ports:
+      - "3000:80"
+    depends_on:
+      - api
+    restart: unless-stopped

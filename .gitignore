@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+api/.venv/
+.env
+api/.env
+web/.env
+sentineldesk.db
+
+# Node.js
+node_modules/
+web/node_modules/
+dist/
+web/dist/
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+.dockerignore
+!api/.dockerignore
+!web/.dockerignore
+
+# Security Reports
+zap_report.html
+docs/screenshots/*.png
+!docs/screenshots/dashboard.png
+!docs/screenshots/alerts.png
+!docs/screenshots/tickets.png
+!docs/screenshots/simulation.png
