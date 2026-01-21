@@ -121,3 +121,5 @@ if required_permission not in user_permissions:
 ---
 
 *Built by Victor Sanchez as a demonstration of Cloud Security Engineering competencies.*
+
+<!-- Triggering CI for Status Checks -->
