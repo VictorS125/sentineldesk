@@ -1,5 +1,5 @@
 # Build Stage
-FROM node:18-alpine as build
+FROM node:20-alpine AS build
 
 WORKDIR /app
 
@@ -10,9 +10,16 @@ RUN npm ci
 # Copy source and build
 COPY . .
 
-# Pass API URL at build time (can be overridden)
+# Pass environment variables at build time (required for Vite to bake into JS bundle)
 ARG VITE_API_BASE_URL=http://localhost:8000
+ARG VITE_ENTRA_TENANT_ID
+ARG VITE_ENTRA_WEB_CLIENT_ID
+ARG VITE_ENTRA_API_CLIENT_ID
+
 ENV VITE_API_BASE_URL=$VITE_API_BASE_URL
+ENV VITE_ENTRA_TENANT_ID=$VITE_ENTRA_TENANT_ID
+ENV VITE_ENTRA_WEB_CLIENT_ID=$VITE_ENTRA_WEB_CLIENT_ID
+ENV VITE_ENTRA_API_CLIENT_ID=$VITE_ENTRA_API_CLIENT_ID
 
 RUN npm run build
 

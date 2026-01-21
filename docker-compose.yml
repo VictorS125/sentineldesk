@@ -14,9 +14,14 @@ services:
     build: 
       context: ./web
       args:
-        # This points the frontend to the backend container's exposed port on localhost
-        # Because the browser (User) accesses it, localhost:8000 refers to the host machine's port
-        - VITE_API_BASE_URL=http://localhost:8000
+        # Frontend environment variables are baked into the JS bundle at build time
+        # These MUST be set in web/.env before running docker-compose build
+        - VITE_API_BASE_URL=${VITE_API_BASE_URL:-http://localhost:8000}
+        - VITE_ENTRA_TENANT_ID=${VITE_ENTRA_TENANT_ID}
+        - VITE_ENTRA_WEB_CLIENT_ID=${VITE_ENTRA_WEB_CLIENT_ID}
+        - VITE_ENTRA_API_CLIENT_ID=${VITE_ENTRA_API_CLIENT_ID}
+    env_file:
+      - ./web/.env
     ports:
       - "3000:80"
     depends_on:
