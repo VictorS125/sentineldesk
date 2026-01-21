@@ -1,4 +1,5 @@
 name: Security & CI Pipeline
+# Triggering first run for status check indexing
 
 on:
   push:
