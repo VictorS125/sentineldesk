@@ -9,6 +9,7 @@ on:
 
 jobs:
   security-test:
+    name: Security Scan & Tests
     runs-on: ubuntu-latest
 
     services:
