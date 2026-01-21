@@ -34,6 +34,6 @@ jobs:
       env:
         tenant_id: "mock-tenant"
         api_audience: "api://mock-client"
-      working-directory: ./api
+        PYTHONPATH: "api"
       run: |
-        python -m pytest tests
+        python -m pytest api/tests
