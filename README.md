@@ -74,6 +74,17 @@ graph TD
 
 ---
 
+## 🎯 Live Demo
+
+> **Note:** This application uses **Microsoft Entra ID** for enterprise-grade authentication, demonstrating real-world identity management practices. Public visitors cannot log in without tenant access.
+
+**Want to see it in action?**
+- 📧 [Request a Live Demo](mailto: sanchezvictora125@gmail.com) — I'd be happy to walk you through the security features
+- 💻 [View Source Code](https://github.com/VictorS125/sentineldesk) — Explore the implementation details
+- 📸 See the [screenshots above](#-interface) for a preview of the interface
+
+---
+
 ## 🛠️ Tech Stack
 
 - **Frontend:** React 18, TypeScript, Tailwind/CSS (Glassmorphism UI)
@@ -94,7 +105,7 @@ The entire stack is containerized for easy deployment.
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/yourusername/sentineldesk.git
+git clone https://github.com/yourusernam/sentineldesk.git
 
 # 2. Configure Environment
 # (Rename .env.example to .env and add your Client IDs)

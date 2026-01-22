@@ -22,5 +22,5 @@ COPY . .
 EXPOSE 8000
 
 # Run the application
-# We use output from requirements which includes [standard] for uvicorn
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Railway provides PORT env var, fallback to 8000 for local dev
+CMD uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}

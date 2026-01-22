@@ -362,10 +362,33 @@ export default function App() {
       <UnauthenticatedTemplate>
         <div className="login-screen">
           <h1>SentinelDesk</h1>
-          <p>Secure ticket management with Microsoft Entra ID authentication</p>
+          <p className="login-tagline">A Secure-by-Design SOAR Platform</p>
+
+          <div className="login-features">
+            <div className="login-feature">🔐 Microsoft Entra ID (OIDC)</div>
+            <div className="login-feature">👥 Role-Based Access Control</div>
+            <div className="login-feature">📋 Audit Logging & Detections</div>
+            <div className="login-feature">⚡ Attack Simulation Demo</div>
+          </div>
+
           <button className="btn-primary" onClick={signIn}>
             Sign in with Microsoft
           </button>
+
+          <div className="login-info">
+            <p>This app requires Microsoft Entra ID authentication to demonstrate enterprise-grade security practices.</p>
+            <div className="login-links">
+              <a href="https://github.com/VictorS125/sentineldesk" target="_blank" rel="noopener noreferrer">
+                📂 View Source
+              </a>
+              <a href="mailto:sanchezvictora125@gmail.com">
+                📧 Request Demo
+              </a>
+              <a href="https://www.linkedin.com/in/victorsanchez125" target="_blank" rel="noopener noreferrer">
+                💼 LinkedIn
+              </a>
+            </div>
+          </div>
         </div>
       </UnauthenticatedTemplate>
 
