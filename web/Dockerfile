@@ -33,8 +33,11 @@ COPY --from=build /app/dist /usr/share/nginx/html
 # Copy custom nginx config template
 COPY nginx.conf /etc/nginx/templates/default.conf.template
 
+# Fix: Set worker_processes to 1 directly in the config file to avoid duplicate directive error
+RUN sed -i 's/worker_processes .*/worker_processes 1;/g' /etc/nginx/nginx.conf
+
 ENV PORT=80
 
 EXPOSE 80
 
-CMD ["nginx", "-g", "daemon off; worker_processes 1;"]
+CMD ["nginx", "-g", "daemon off;"]
