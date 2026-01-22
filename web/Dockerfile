@@ -37,4 +37,4 @@ ENV PORT=80
 
 EXPOSE 80
 
-CMD ["nginx", "-g", "daemon off;", "-o", "worker_processes 1;"]
+CMD ["nginx", "-g", "daemon off; worker_processes 1;"]
