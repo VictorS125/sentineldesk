@@ -33,11 +33,9 @@ async def add_security_headers(request: Request, call_next):
     return response
 
 # CORS configuration
-origins = settings.allowed_origins.split(",")
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origin_regex="https://.*\.railway\.app|http://localhost.*",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

@@ -24,6 +24,9 @@ class RateLimitMiddleware(BaseHTTPMiddleware):
         self.request_log[ip] = [ts for ts in self.request_log[ip] if ts > cutoff]
     
     async def dispatch(self, request: Request, call_next):
+        if request.method == "OPTIONS":
+            return await call_next(request)
+
         # Get client IP
         client_ip = request.client.host if request.client else "unknown"
         now = time.time()
