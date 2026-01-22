@@ -12,6 +12,11 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="SentinelDesk API")
 
+# Health check endpoint for Railway
+@app.get("/health", tags=["monitoring"])
+async def health_check():
+    return {"status": "healthy"}
+
 # Rate limiting middleware (100 requests/minute per IP)
 app.add_middleware(RateLimitMiddleware, requests_per_minute=100)
 
